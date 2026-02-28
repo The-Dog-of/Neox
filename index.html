@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoX Studio | Play the Future</title>
+    <link rel="icon" type="image/png" href="assets/NeoX.png">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <div id="preloader">
+        <div class="preloader-content">
+            <h1 class="preloader-text">NeoX</h1>
+            <div class="preloader-bar"><div class="preloader-progress"></div></div>
+        </div>
+    </div>
+
+    <div id="roblox-cursor"></div>
+    <div id="cursor-particles"></div>
+    
+    <div class="bg-wrapper">
+        <div id="particles-js"></div> 
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo-container magnetic-wrap">
+                <a href="#home" class="nav-logo-link magnetic-item">
+                    <span class="logo-text">NeoX</span>
+                </a>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link-text bounce-hover" data-text="Home" data-pt="Home" data-en="Home">Home</a></li>
+                <li><a href="#about" class="nav-link-text bounce-hover" data-text="Sobre" data-pt="Sobre" data-en="About">Sobre</a></li>
+                <li><a href="#games" class="nav-link-text bounce-hover" data-text="Jogos" data-pt="Jogos" data-en="Games">Jogos</a></li>
+                <li><a href="#team" class="nav-link-text bounce-hover" data-text="Equipe" data-pt="Equipe" data-en="Team">Equipe</a></li>
+                <li><a href="#contact" class="nav-link-text bounce-hover" data-text="Contato" data-pt="Contato" data-en="Contact">Contato</a></li>
+                <li><a href="https://discord.gg/TDGaDNfZ" class="btn btn-discord magnetic-wrap" target="_blank"><span class="magnetic-item"><i class="fab fa-discord"></i> Discord</span></a></li>
+            </ul>
+
+            <div class="header-actions">
+                <button id="langToggle" class="btn-lang magnetic-wrap">
+                    <span class="magnetic-item">PT/EN</span>
+                </button>
+                <div class="menu-toggle magnetic-wrap" id="mobile-menu">
+                    <div class="magnetic-itemburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="hero-badge reveal-up" data-pt="BEM-VINDO AO NOVO" data-en="WELCOME TO THE NEW">BEM-VINDO AO NOVO</div>
+                <h1 class="hero-title reveal-up delay-1" data-pt="Criando <span class='text-gradient'>Universos</span><br>Inesquecíveis" data-en="Crafting Unforgettable<br><span class='text-gradient'>Universes</span>">
+                    Criando <span class="text-gradient">Universos</span><br>Inesquecíveis
+                </h1>
+                <p class="hero-subtitle reveal-up delay-2" data-pt="Jogos com energia, cores e diversão. A NeoX é onde a comunidade ganha vida." data-en="Games with energy, colors, and fun. NeoX is where the community comes alive.">
+                    Jogos com energia, cores e diversão. A NeoX é onde a comunidade ganha vida.
+                </p>
+                <div class="hero-btns reveal-up delay-3">
+                    <div class="magnetic-wrap btn-wrapper-primary">
+                        <a href="#games" class="btn btn-primary magnetic-item" data-pt="Nossos Jogos" data-en="Our Games">Nossos Jogos</a>
+                    </div>
+                    <div class="magnetic-wrap">
+                        <a href="#about" class="btn btn-secondary magnetic-item" data-pt="Conheça a NeoX" data-en="Meet NeoX">Conheça a NeoX</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section reveal">
+            <div class="stat-card tilt-card">
+                <h2 class="counter" data-target="10">0</h2><span>M+</span>
+                <p data-pt="Jogadores Ativos" data-en="Active Players">Jogadores Ativos</p>
+            </div>
+            <div class="stat-card tilt-card">
+                <h2 class="counter" data-target="50">0</h2><span>k+</span>
+                <p data-pt="Membros no Discord" data-en="Discord Members">Membros no Discord</p>
+            </div>
+            <div class="stat-card tilt-card">
+                <h2 class="counter" data-target="3">0</h2><span>+</span>
+                <p data-pt="Mega Projetos" data-en="Mega Projects">Mega Projetos</p>
+            </div>
+        </section>
+
+        <section id="about" class="about-section reveal">
+            <div class="container split-layout">
+                <div class="about-image-wrapper magnetic-wrap">
+                    <div class="about-image magnetic-item">
+                        <img src="assets/NeoX.png" alt="NeoX Mascot" class="floating-mascot" onerror="this.style.display='none'">
+                        <div class="image-backdrop"></div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <div class="tag-label" data-pt="A NOSSA ESSÊNCIA" data-en="OUR ESSENCE">A NOSSA ESSÊNCIA</div>
+                    <h2 class="section-title" data-pt="Diversão levada a sério." data-en="Fun taken seriously.">Diversão levada a sério.</h2>
+                    <p data-pt="A NeoX nasceu para quebrar a monotonia. Nós não fazemos apenas jogos, criamos parques de diversão digitais onde cada pixel é pensado para fazer você sorrir." data-en="NeoX was born to break the monotony. We don't just make games, we create digital amusement parks where every pixel is designed to make you smile.">A NeoX nasceu para quebrar a monotonia. Nós não fazemos apenas jogos, criamos parques de diversão digitais onde cada pixel é pensado para fazer você sorrir.</p>
+                    <ul class="about-features">
+                        <li><i class="fas fa-gamepad"></i> <span data-pt="Gameplay Vibrante" data-en="Vibrant Gameplay">Gameplay Vibrante</span></li>
+                        <li><i class="fas fa-users"></i> <span data-pt="Foco na Comunidade" data-en="Community Focused">Foco na Comunidade</span></li>
+                        <li><i class="fas fa-rocket"></i> <span data-pt="Atualizações Constantes" data-en="Constant Updates">Atualizações Constantes</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="games" class="games-section reveal">
+            <div class="section-header">
+                <div class="tag-label" data-pt="O QUE JOGAR AGORA" data-en="WHAT TO PLAY NOW">O QUE JOGAR AGORA</div>
+                <h2 class="section-title" data-pt="Nossos Universos" data-en="Our Universes">Nossos Universos</h2>
+                <p class="section-subtitle" data-pt="Explore os mundos imersivos que construímos com paixão e adrenalina para a nossa comunidade." data-en="Explore the immersive worlds we built with passion and adrenaline for our community.">Explore os mundos imersivos que construímos com paixão e adrenalina para a nossa comunidade.</p>
+            </div>
+            <div class="games-grid container">
+                
+                <div class="game-card bounce-card" data-universe-id="7660190629" data-status="dev">
+                    <div class="card-image-box">
+                        <img src="" alt="Game Thumbnail" class="game-thumb">
+                        <div class="play-overlay"><i class="fas fa-gamepad"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="game-name">Anime Crash</h3>
+                        <p class="game-desc" data-pt="Entre na arena e prove seu valor no jogo mais frenético do ano." data-en="Enter the arena and prove your worth in the most frantic game of the year.">Entre na arena e prove seu valor no jogo mais frenético do ano.</p>
+                        <div class="game-stats">
+                            <div class="stat-pill"><span class="status-dot"></span> <span class="peak-count">...</span> <span data-pt="Ativos" data-en="Active">Ativos</span></div>
+                            <div class="stat-pill"><span class="status-dot"></span> <span class="visit-count">...</span> <span data-pt="Visitas" data-en="Visits">Visitas</span></div>
+                        </div>
+                        <a href="#" class="btn btn-play full-width" data-pt="Jogar Agora" data-en="Play Now">Jogar Agora</a>
+                    </div>
+                </div>
+                
+                <div class="game-card bounce-card" data-universe-id="7872170209">
+                    <div class="card-image-box">
+                        <img src="" alt="Game Thumbnail" class="game-thumb">
+                        <div class="play-overlay"><i class="fas fa-gamepad"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="game-name">Carregando...</h3>
+                        <p class="game-desc" data-pt="Domine os céus e a terra com seus poderes celestiais." data-en="Master the skies and earth with your celestial powers.">Domine os céus e a terra com seus poderes celestiais.</p>
+                        <div class="game-stats">
+                            <div class="stat-pill"><span class="status-dot"></span> <span class="peak-count">...</span> <span data-pt="Ativos" data-en="Active">Ativos</span></div>
+                            <div class="stat-pill"><span class="status-dot"></span> <span class="visit-count">...</span> <span data-pt="Visitas" data-en="Visits">Visitas</span></div>
+                        </div>
+                        <a href="#" class="btn btn-play full-width" data-pt="Jogar Agora" data-en="Play Now">Jogar Agora</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="team" class="team-section reveal">
+            <div class="section-header">
+                <div class="tag-label" data-pt="OS CRIADORES" data-en="THE CREATORS">OS CRIADORES</div>
+                <h2 class="section-title" data-pt="A Equipe NeoX" data-en="The NeoX Team">A Equipe NeoX</h2>
+            </div>
+            <div class="team-carousel-wrapper">
+                <button class="nav-arrow prev-arrow"><i class="fas fa-arrow-left"></i></button>
+                <div class="team-track">
+                    
+                    <div class="team-member-minimal pop-in">
+                        <div class="minimal-photo">
+                            <img src="assets/team/sasa.png" alt="SasaDev" onerror="this.style.display='none'">
+                        </div>
+                        <div class="minimal-details">
+                            <h3 class="member-name">SasaDev</h3>
+                            <p class="member-role" data-pt="Diretor Criativo" data-en="Creative Director">Owner</p>
+                            <a href="https://www.roblox.com/users/5790284269/profile" class="minimal-link" target="_blank">
+                                <span data-pt="Perfil Roblox" data-en="Roblox Profile">Perfil Roblox</span> <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="team-member-minimal pop-in delay-1">
+                        <div class="minimal-photo">
+                            <img src="assets/team/RealDado.png" alt="RealDado" onerror="this.style.display='none'">
+                        </div>
+                        <div class="minimal-details">
+                            <h3 class="member-name">Real Dado</h3>
+                            <p class="member-role" data-pt="Líder de Prog." data-en="Lead Programmer">Líder de Prog.</p>
+                            <a href="#" class="minimal-link" target="_blank">
+                                <span data-pt="Perfil Roblox" data-en="Roblox Profile">Perfil Roblox</span> <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="team-member-minimal pop-in delay-2">
+                        <div class="minimal-photo">
+                            <img src="assets/team/do_nopps.png" alt="do_nopps" onerror="this.style.display='none'">
+                        </div>
+                        <div class="minimal-details">
+                            <h3 class="member-name">Do_nopps</h3>
+                            <p class="member-role" data-pt="Artista 3D" data-en="3D Artist">Artista 3D</p>
+                            <a href="https://www.roblox.com/users/2731128149/profile" class="minimal-link" target="_blank">
+                                <span data-pt="Perfil Roblox" data-en="Roblox Profile">Perfil Roblox</span> <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+                <button class="nav-arrow next-arrow"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section reveal">
+            <div class="container contact-box">
+                <div class="contact-text">
+                    <h2 class="section-title" data-pt="Pronto para a diversão?" data-en="Ready for the fun?">Pronto para a diversão?</h2>
+                    <p data-pt="Mande uma mensagem, entre no nosso Discord e faça parte da família NeoX!" data-en="Send a message, join our Discord and become part of the NeoX family!">Mande uma mensagem, entre no nosso Discord e faça parte da família NeoX!</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <form id="neoxForm" class="fun-form">
+                        <div class="input-group">
+                            <input type="text" id="name" name="name" required placeholder="Seu Nome / Your Name">
+                        </div>
+                        <div class="input-group">
+                            <input type="email" id="email" name="email" required placeholder="Seu E-mail / Your E-mail">
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="roblox" name="roblox" placeholder="Nick do Roblox (Opcional) / Roblox Nick (Optional)">
+                        </div>
+                        <div class="input-group">
+                            <textarea id="message" name="message" required minlength="16" placeholder="O que manda? (Mínimo 16 caracteres) / What's up? (Min 16 chars)"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-submit" id="formBtn">
+                            <span data-pt="Enviar Mensagem" data-en="Send Message">Enviar Mensagem</span> <i class="fas fa-paper-plane"></i>
+                        </button>
+                        <div id="formMsg" class="form-msg"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-bottom">
+            <h2 class="footer-brand">NeoX Studio</h2>
+            <p>&copy; 2026 NeoX. <span data-pt="Todos os direitos reservados." data-en="All rights reserved.">Todos os direitos reservados.</span></p>
+        </div>
+    </footer>
+
+    <script src="script/main.js"></script>
+</body>
+</html>
