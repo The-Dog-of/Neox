@@ -692,36 +692,72 @@ body.loaded .reveal-up {
     align-items: center;
 }
 
-.about-image {
-    width: 100%;
-    aspect-ratio: 1/1;
-    position: relative;
+.about-interactive-wrapper {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
 }
 
-.image-backdrop {
-    position: absolute;
-    inset: 10%;
+.interactive-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 8px;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1/1;
+    background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
-    z-index: -1;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,255,255,0.02);
+    backdrop-filter: blur(20px);
+    position: relative;
 }
 
-.floating-mascot {
-    width: 85%;
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 0 40px rgba(0,229,255,0.4));
-    animation: floatMascot 6s infinite alternate ease-in-out;
+.grid-block {
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(0,0,0,0.5));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.6), 0 10px 15px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.1);
+    transition: 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+    cursor: pointer !important;
+    position: relative;
+    overflow: hidden;
 }
 
-@keyframes floatMascot {
-    to { transform: translateY(-20px); }
+.grid-block:hover {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 rgba(0,0,0,0), 0 4px 10px rgba(0,229,255,0.3), inset 0 1px 5px rgba(255,255,255,0.4);
+    background: var(--cyan);
+    border-color: #fff;
+}
+
+.grid-block:nth-child(2n):hover {
+    background: var(--magenta);
+    box-shadow: 0 0 0 rgba(0,0,0,0), 0 4px 10px rgba(255,51,102,0.3), inset 0 1px 5px rgba(255,255,255,0.4);
+}
+
+.grid-block:nth-child(3n):hover {
+    background: var(--yellow);
+    box-shadow: 0 0 0 rgba(0,0,0,0), 0 4px 10px rgba(255,204,0,0.3), inset 0 1px 5px rgba(255,255,255,0.4);
+}
+
+.grid-center-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    font-weight: 900;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: -4px;
+    color: #fff;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.9), 0 0 30px rgba(255,255,255,0.3);
+    pointer-events: none;
+    z-index: 10;
 }
 
 .about-text p {
@@ -1420,6 +1456,9 @@ footer {
     .hero-btns .btn { width: 100%; }
     .stats-section { grid-template-columns: 1fr; gap: 20px; }
     
+    .interactive-grid { max-width: 300px; padding: 10px; gap: 4px; border-radius: 16px; }
+    .grid-center-logo { font-size: 3.5rem; }
+
     .games-grid { grid-template-columns: 1fr; }
     
     .media-carousel-wrapper { padding: 20px 10px; border-radius: 12px; }

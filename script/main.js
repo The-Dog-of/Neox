@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
         
-        const interactiveElements = document.querySelectorAll('a, button, .magnetic-item, input, textarea, .game-card, .media-slide');
+        const interactiveElements = document.querySelectorAll('a, button, .magnetic-item, input, textarea, .game-card, .media-slide, .grid-block');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
@@ -217,6 +217,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             );
         });
+
+        const gridBlocks = document.querySelectorAll('.grid-block');
+        if (gridBlocks.length > 0) {
+            gsap.fromTo(gridBlocks,
+                { scale: 0, opacity: 0, rotationZ: 15 },
+                {
+                    scrollTrigger: {
+                        trigger: '#interactive-grid',
+                        start: "top 85%"
+                    },
+                    scale: 1, opacity: 1, rotationZ: 0,
+                    duration: 0.6,
+                    ease: "back.out(1.5)",
+                    stagger: 0.03
+                }
+            );
+
+            gridBlocks.forEach(block => {
+                block.addEventListener('click', () => {
+                    gsap.fromTo(block, 
+                        { scale: 0.7 }, 
+                        { scale: 1, duration: 0.5, ease: "elastic.out(1, 0.4)" }
+                    );
+                });
+            });
+        }
     }
 
     const statsSection = document.querySelector('.stats-section');
