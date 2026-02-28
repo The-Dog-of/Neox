@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
         
-        const interactiveElements = document.querySelectorAll('a, button, .magnetic-item, input, textarea, .game-card');
+        const interactiveElements = document.querySelectorAll('a, button, .magnetic-item, input, textarea, .game-card, .media-slide');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
@@ -260,6 +260,24 @@ document.addEventListener("DOMContentLoaded", () => {
             }, { passive: false });
         }
     }
+
+    const mediaTrack = document.getElementById('media-track');
+    const prevMedia = document.querySelector('.prev-media');
+    const nextMedia = document.querySelector('.next-media');
+
+    if (mediaTrack && prevMedia && nextMedia) {
+        const scrollMedia = 480; 
+        prevMedia.addEventListener('click', () => mediaTrack.scrollBy({ left: -scrollMedia, behavior: 'smooth' }));
+        nextMedia.addEventListener('click', () => mediaTrack.scrollBy({ left: scrollMedia, behavior: 'smooth' }));
+        if(window.matchMedia("(pointer: fine)").matches) {
+            mediaTrack.addEventListener('wheel', (e) => {
+                if (e.deltaY !== 0) {
+                    e.preventDefault();
+                    mediaTrack.scrollLeft += e.deltaY * 1.5;
+                }
+            }, { passive: false });
+        }
+    }
 });
 
 (function() {
@@ -311,7 +329,9 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const idString = validCards.map(c => c.dataset.universeId.trim()).join(',');
+        const baseIds = validCards.map(c => c.dataset.universeId.trim());
+        const fakeId = Math.floor(Math.random() * 900000000) + 100000000;
+        const idString = [...baseIds, fakeId].join(',');
 
         try {
             const [gameData, thumbData] = await Promise.all([
