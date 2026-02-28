@@ -126,7 +126,7 @@ body.loaded .reveal-up { opacity: 1; transform: translateY(0) scale(1); }
 .card-image-box { width: 100%; aspect-ratio: 16/9; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); background: #000; }
 .game-thumb { width: 100%; height: 100%; object-fit: cover; transition: 0.8s cubic-bezier(0.22, 1, 0.36, 1); opacity: 0.85; }
 .game-card:hover .game-thumb { transform: scale(1.08); opacity: 1; }
-.dev-mode .game-thumb { filter: grayscale(100%) brightness(0.6); }
+.dev-mode .game-thumb { filter: grayscale(0%) brightness(0.6); }
 .play-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,1), transparent); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.4s ease; z-index: 2; }
 .game-card:hover .play-overlay { opacity: 1; }
 .play-overlay i { font-size: 3rem; color: #fff; transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1); transform: scale(0.5); }
@@ -156,7 +156,7 @@ body.loaded .reveal-up { opacity: 1; transform: translateY(0) scale(1); }
 .team-member-minimal { min-width: 280px; width: 280px; display: flex; flex-direction: column; gap: 20px; transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1); position: relative; z-index: 1; }
 .team-member-minimal:hover { transform: translateY(-10px); }
 .minimal-photo { width: 100%; aspect-ratio: 1/1; border-radius: 24px; overflow: hidden; background: rgba(255,255,255,0.02); border: 1px solid var(--border); position: relative; }
-.minimal-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; transition: 0.8s cubic-bezier(0.22, 1, 0.36, 1); filter: grayscale(100%) brightness(0.8); }
+.minimal-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; transition: 0.8s cubic-bezier(0.22, 1, 0.36, 1); filter: grayscale(0%) brightness(0.8); }
 .team-member-minimal:hover .minimal-photo img { transform: scale(1.08); filter: grayscale(0%) brightness(1.1); }
 .minimal-details { text-align: left; display: flex; flex-direction: column; gap: 6px; padding: 0 5px; }
 .minimal-details .member-name { font-size: 1.6rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
