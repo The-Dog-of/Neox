@@ -688,7 +688,7 @@ body.loaded .reveal-up {
 .split-layout {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 100px;
+    gap: 80px;
     align-items: center;
 }
 
@@ -1108,17 +1108,18 @@ body.loaded .reveal-up {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 50px;
+    overflow: visible;
 }
 
 .team-track {
     display: flex;
     gap: 40px;
     overflow-x: auto;
-    padding: 40px 20px 60px;
+    padding: 40px 10px 60px;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .team-track::-webkit-scrollbar {
@@ -1134,6 +1135,11 @@ body.loaded .reveal-up {
     transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
     z-index: 1;
+    margin-left: 10px;
+}
+
+.team-member-minimal:first-child {
+    margin-left: 20px;
 }
 
 .team-member-minimal:hover {
