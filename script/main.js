@@ -277,14 +277,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const scrollAmount = 320;
         btnLeft.addEventListener('click', () => teamTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' }));
         btnRight.addEventListener('click', () => teamTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' }));
-        if(window.matchMedia("(pointer: fine)").matches) {
-            teamTrack.addEventListener('wheel', (e) => {
-                if (e.deltaY !== 0) {
-                    e.preventDefault();
-                    teamTrack.scrollLeft += e.deltaY * 1.5;
-                }
-            }, { passive: false });
-        }
     }
 
     const mediaTrack = document.getElementById('media-track');
