@@ -316,32 +316,46 @@
         
         
 
-        <section id="contact" class="contact-section reveal">
+<section id="contact" class="contact-section reveal">
             <div class="container contact-box">
+                <div class="contact-glow-orb"></div>
                 <div class="contact-text">
+                    <div class="tag-label" data-pt="FALE CONOSCO" data-en="TALK TO US">FALE CONOSCO</div>
                     <h2 class="section-title" data-pt="Pronto para a diversão?" data-en="Ready for the fun?">Pronto para a diversão?</h2>
                     <p data-pt="Mande uma mensagem, entre no nosso Discord e faça parte da família NeoX!" data-en="Send a message, join our Discord and become part of the NeoX family!">Mande uma mensagem, entre no nosso Discord e faça parte da família NeoX!</p>
                     <div class="social-links">
-                        <a href="https://x.com/NeoX351459" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="https://discord.gg/nNhGsEwanr" class="social-icon"><i class="fab fa-discord"></i></a>
+                        <a href="https://x.com/NeoX351459" class="social-icon magnetic-wrap" target="_blank"><span class="magnetic-item"><i class="fab fa-twitter"></i></span></a>
+                        <a href="https://discord.gg/nNhGsEwanr" class="social-icon magnetic-wrap" target="_blank"><span class="magnetic-item"><i class="fab fa-discord"></i></span></a>
                     </div>
                 </div>
                 <div class="contact-form-container">
                     <form id="neoxForm" class="fun-form">
-                        <div class="input-group">
-                            <input type="text" id="name" name="name" required placeholder="Seu Nome / Your Name">
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <input type="text" id="name" name="name" required placeholder=" ">
+                                <label for="name" data-pt="Seu Nome" data-en="Your Name">Seu Nome</label>
+                                <div class="input-line"></div>
+                            </div>
+                            <div class="input-group">
+                                <input type="email" id="email" name="email" required placeholder=" ">
+                                <label for="email" data-pt="Seu E-mail" data-en="Your E-mail">Seu E-mail</label>
+                                <div class="input-line"></div>
+                            </div>
                         </div>
                         <div class="input-group">
-                            <input type="email" id="email" name="email" required placeholder="Seu E-mail / Your E-mail">
+                            <input type="text" id="roblox" name="roblox" placeholder=" ">
+                            <label for="roblox" data-pt="Nick do Roblox (Opcional)" data-en="Roblox Nick (Optional)">Nick do Roblox (Opcional)</label>
+                            <div class="input-line"></div>
                         </div>
                         <div class="input-group">
-                            <input type="text" id="roblox" name="roblox" placeholder="Nick do Roblox (Opcional) / Roblox Nick (Optional)">
+                            <textarea id="message" name="message" required minlength="16" placeholder=" "></textarea>
+                            <label for="message" data-pt="O que manda? (Mínimo 16 caracteres)" data-en="What's up? (Min 16 chars)">O que manda? (Mínimo 16 caracteres)</label>
+                            <div class="input-line"></div>
                         </div>
-                        <div class="input-group">
-                            <textarea id="message" name="message" required minlength="16" placeholder="O que manda? (Mínimo 16 caracteres) / What's up? (Min 16 chars)"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-submit" id="formBtn">
-                            <span data-pt="Enviar Mensagem" data-en="Send Message">Enviar Mensagem</span> <i class="fas fa-paper-plane"></i>
+                        <button type="submit" class="btn btn-submit magnetic-wrap" id="formBtn">
+                            <span class="magnetic-item submit-content">
+                                <span data-pt="Enviar Mensagem" data-en="Send Message">Enviar Mensagem</span> <i class="fas fa-paper-plane"></i>
+                            </span>
                         </button>
                         <div id="formMsg" class="form-msg"></div>
                     </form>
