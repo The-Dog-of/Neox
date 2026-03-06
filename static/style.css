@@ -985,21 +985,14 @@ body.loaded .reveal-up {
     100% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 15px rgba(0, 255, 102, 0.9); }
 }
 
-.stat-pill i {
-    font-size: 0.85rem;
-    color: var(--yellow);
+.game-actions {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
 }
-
-.dev-badge {
-    color: var(--magenta);
-    border-color: rgba(255, 51, 102, 0.3);
-}
-
-.dev-badge i { color: var(--magenta); }
-
-.full-width { width: 100%; }
 
 .btn-play {
+    flex: 1;
     background-color: rgba(255,255,255,0.05);
     color: #fff;
     border: 1px solid var(--border);
@@ -1007,11 +1000,29 @@ body.loaded .reveal-up {
     border-radius: 12px;
 }
 
+.btn-game-discord {
+    width: 60px;
+    background-color: rgba(255,255,255,0.05);
+    color: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
 .game-card:hover .btn-play:not(.disabled) {
     background-color: white;
     color: black;
     box-shadow: 0 10px 30px rgba(255,255,255,0.2);
-    transform: scale(1.02);
+}
+
+.game-card:hover .btn-game-discord {
+    background-color: var(--discord);
+    border-color: var(--discord);
+    box-shadow: 0 10px 30px rgba(88,101,242,0.4);
 }
 
 .btn-play.disabled {
@@ -1193,7 +1204,7 @@ body.loaded .reveal-up {
     object-fit: cover;
     object-position: center 15%;
     transition: 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    filter: grayscale(10%) brightness(0.8);
+    filter: grayscale(0%) brightness(0.8);
 }
 
 .team-member-minimal:hover .minimal-photo img {
@@ -1379,7 +1390,7 @@ body.loaded .reveal-up {
 
 .fun-form input, .fun-form textarea {
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.03);
+    background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     color: #fff;
@@ -1491,12 +1502,12 @@ body.loaded .reveal-up {
 
 .form-msg.success {
     color: #00e5ff;
-    text-shadow: 0 0 10px rgba(0,229,255,0.5);
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
 }
 
 .form-msg.error {
     color: #ff3366;
-    text-shadow: 0 0 10px rgba(255,51,102,0.5);
+    text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
 }
 
 footer {
