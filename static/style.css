@@ -997,6 +997,15 @@ body.loaded .reveal-up {
 
 .dev-badge i { color: var(--magenta); }
 
+.partner-badge {
+    color: var(--yellow);
+    border-color: rgba(255, 204, 0, 0.3);
+}
+
+.partner-badge i {
+    color: var(--yellow);
+}
+
 .full-width { width: 100%; }
 
 .btn-play {

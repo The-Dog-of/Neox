@@ -341,7 +341,15 @@ document.addEventListener("DOMContentLoaded", () => {
             allCards.forEach(card => {
                 const statsDiv = card.querySelector('.game-stats');
                 const btn = card.querySelector('.btn-play');
-                if (statsDiv) statsDiv.innerHTML = '<div class="stat-pill dev-badge"><i class="fas fa-hammer"></i> <span data-pt="Em Desenvolvimento" data-en="In Development">Em Desenvolvimento</span></div>';
+                const isPartner = card.dataset.status === 'partner';
+                
+                if (statsDiv) {
+                    let badgesHTML = '<div class="stat-pill dev-badge"><i class="fas fa-hammer"></i> <span data-pt="Em Desenvolvimento" data-en="In Development">Em Desenvolvimento</span></div>';
+                    if (isPartner) {
+                        badgesHTML += '<div class="stat-pill partner-badge"><i class="fas fa-handshake"></i> <span data-pt="Parceiro" data-en="Partner">Parceiro</span></div>';
+                    }
+                    statsDiv.innerHTML = badgesHTML;
+                }
                 if (btn) { btn.innerText = 'Em Breve'; btn.classList.add('disabled'); btn.style.pointerEvents = 'none'; }
             });
             return;
@@ -361,7 +369,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const uidStr = (card.dataset.universeId || "").trim();
                 const uid = parseInt(uidStr);
                 
-                const isForcedDev = card.dataset.status === 'dev' || uidStr === '' || uidStr === '0000000';
+                const isForcedDev = card.dataset.status === 'dev' || card.dataset.status === 'partner' || uidStr === '' || uidStr === '0000000';
+                const isPartner = card.dataset.status === 'partner';
 
                 const nameEl = card.querySelector('.game-name');
                 const peakEl = card.querySelector('.peak-count');
@@ -372,7 +381,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const setDevMode = () => {
                     if (statsDiv) {
-                        statsDiv.innerHTML = '<div class="stat-pill dev-badge"><i class="fas fa-hammer"></i> <span data-pt="Em Desenvolvimento" data-en="In Development">Em Desenvolvimento</span></div>';
+                        let badgesHTML = '<div class="stat-pill dev-badge"><i class="fas fa-hammer"></i> <span data-pt="Em Desenvolvimento" data-en="In Development">Em Desenvolvimento</span></div>';
+                        if (isPartner) {
+                            badgesHTML += '<div class="stat-pill partner-badge"><i class="fas fa-handshake"></i> <span data-pt="Partner" data-en="Partner">Partner</span></div>';
+                        }
+                        statsDiv.innerHTML = badgesHTML;
                     }
                     if (btn) {
                         btn.innerText = 'Em Breve';
@@ -424,9 +437,27 @@ if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const formData = new FormData(contactForm);
-        const messageVal = formData.get('message') || "";
+        const nameVal = (formData.get('name') || "").toLowerCase();
+        const messageVal = (formData.get('message') || "").toLowerCase();
+
         if (messageVal.length < 16) {
             formMsg.innerText = "Mínimo de 16 caracteres.";
+            formMsg.className = "form-msg error";
+            return;
+        }
+
+        const blockedWords = [
+            "porra", "caralho", "fodase", "foder", "merda", "puta", "viado", "corno", "idiota", "imbecil", "lixo", "desgraça", "buceta", "pinto", "rola", "cu", "fdp", "cacete", "vaca", "vagabunda", "arrombado", "babaca", "trouxa", "otario", "escroto",
+            "fuck", "shit", "asshole", "bitch", "dick", "piss", "bastard", "cunt", "faggot", "idiot", "dumb", "stfu", "hell", "pussy", "nigger", "slut", "whore", "retard", "bollocks", "motherfucker",
+            "crypto", "bitcoin", "investimento", "investment", "lucro", "profit", "free money", "dinheiro grátis", "ganhar dinheiro", "casino", "cassino", "bet", "aposta", "poker", "porn", "sex", "xxx", "adult", "dating", "sexy", "buy now", "click here", "compre agora", "clique aqui", "earn money", "income", "wealth", "millionaire", "prize", "winner"
+        ];
+
+        const hasBlockedWord = blockedWords.some(word => 
+            nameVal.includes(word) || messageVal.includes(word)
+        );
+
+        if (hasBlockedWord) {
+            formMsg.innerText = "Conteúdo impróprio detectado.";
             formMsg.className = "form-msg error";
             return;
         }
@@ -440,7 +471,7 @@ if (contactForm) {
                     { name: "Nome", value: formData.get('name') || "N/A", inline: true },
                     { name: "Email", value: formData.get('email') || "N/A", inline: true },
                     { name: "Nick Roblox", value: formData.get('roblox') || "Não informado", inline: false },
-                    { name: "Mensagem", value: messageVal.substring(0, 1024) }
+                    { name: "Mensagem", value: formData.get('message').substring(0, 1024) }
                 ],
                 footer: { text: "NeoX Studio Web System" },
                 timestamp: new Date().toISOString()
