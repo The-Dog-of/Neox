@@ -449,7 +449,7 @@ if (contactForm) {
         const blockedWords = [
             "porra", "caralho", "fodase", "foder", "merda", "puta", "viado", "corno", "idiota", "imbecil", "lixo", "desgraça", "buceta", "pinto", "rola", "cu", "fdp", "cacete", "vaca", "vagabunda", "arrombado", "babaca", "trouxa", "otario", "escroto",
             "fuck", "shit", "asshole", "bitch", "dick", "piss", "bastard", "cunt", "faggot", "idiot", "dumb", "stfu", "hell", "pussy", "nigger", "slut", "whore", "retard", "bollocks", "motherfucker",
-            "crypto", "bitcoin", "investimento", "investment", "lucro", "profit", "free money", "dinheiro grátis", "ganhar dinheiro", "casino", "cassino", "bet", "aposta", "poker", "porn", "sex", "xxx", "adult", "dating", "sexy", "buy now", "click here", "compre agora", "clique aqui", "earn money", "income", "wealth", "millionaire", "prize", "winner"
+            "crypto", "bitcoin", "investimento", "investment", "lucro", "profit", "free money", "dinheiro grátis", "ganhar dinheiro", "casino", "cassino", "bet", "aposta", "poker", "porn", "sex", "xxx", "adult", "dating", "sexy", "buy now", "click here", "compre agora", "clique aqui", "earn money", "income", "wealth", "millionaire", "prize", "winner", "xvideos", "redtube", "youporn", "pornhub", "camgirl", "sexcam", "onlyfans", "chaturbate", "livejasmin", "bonga", "streamate", "tarado" , "nudes", "sexting", "dildo", "vibrator", "anal", "blowjob", "handjob", "cum", "ejaculation", "orgasm", "threesome", "foursome", "gf"
         ];
 
         const hasBlockedWord = blockedWords.some(word => 
