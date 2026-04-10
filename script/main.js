@@ -1,19 +1,13 @@
 window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.body.classList.add('loaded');
-    }, 1200);
+    document.body.classList.add('loaded');
 });
 
-setTimeout(() => {
-    document.body.classList.add('loaded');
-}, 3500);
-
-const apiURL = "/api/send"; 
+const apiURL = "/api/send";
 
 try {
     if (typeof Lenis !== 'undefined') {
         const lenis = new Lenis({
-            duration: 1.5,
+            duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             direction: 'vertical',
             smooth: true,
@@ -31,18 +25,17 @@ try {
     if (typeof particlesJS !== 'undefined') {
         particlesJS("particles-js", {
             particles: {
-                number: { value: 40, density: { enable: true, value_area: 1000 } },
+                number: { value: 25, density: { enable: true, value_area: 1200 } },
                 color: { value: ["#00e5ff", "#ff3366", "#ffcc00"] },
                 shape: { type: "circle" },
                 opacity: { value: 0.3, random: true },
-                size: { value: 2.5, random: true },
+                size: { value: 2, random: true },
                 line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.05, width: 1 },
                 move: { enable: true, speed: 1, direction: "none", random: true, straight: false, out_mode: "out", bounce: false }
             },
             interactivity: {
                 detect_on: "canvas",
-                events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true },
-                modes: { grab: { distance: 140, line_linked: { opacity: 0.2 } } }
+                events: { onhover: { enable: false }, onclick: { enable: false }, resize: true }
             },
             retina_detect: true
         });
@@ -90,8 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const robloxCursor = document.getElementById("roblox-cursor");
-    const cursorParticlesContainer = document.getElementById("cursor-particles");
-    let lastParticleTime = 0;
+    let isMouseMoving = false;
 
     if (window.matchMedia("(pointer: fine)").matches && typeof gsap !== 'undefined') {
         gsap.set(robloxCursor, { xPercent: -50, yPercent: -50, opacity: 1 });
@@ -101,38 +93,23 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("mousemove", (e) => { 
             mouseX = e.clientX; 
             mouseY = e.clientY; 
-            const x = (window.innerWidth / 2 - e.pageX) / 40;
-            const y = (window.innerHeight / 2 - e.pageY) / 40;
-            gsap.to(".grid-overlay", { x: x, y: y, duration: 1.5, ease: "power2.out" });
-            gsap.to(".floating-shape", { x: -x * 1.5, y: -y * 1.5, duration: 2, ease: "power2.out", stagger: 0.05 });
-
-            const now = Date.now();
-            if (now - lastParticleTime > 50) {
-                createRobloxParticle(mouseX, mouseY);
-                lastParticleTime = now;
+            
+            if (!isMouseMoving) {
+                isMouseMoving = true;
+                requestAnimationFrame(() => {
+                    const x = (window.innerWidth / 2 - mouseX) / 50;
+                    const y = (window.innerHeight / 2 - mouseY) / 50;
+                    gsap.to(".grid-overlay", { x: x, y: y, duration: 1, ease: "power1.out" });
+                    gsap.to(".floating-shape", { x: -x, y: -y, duration: 1.5, ease: "power1.out" });
+                    isMouseMoving = false;
+                });
             }
         });
         
         gsap.ticker.add(() => {
-            gsap.to(robloxCursor, { x: mouseX, y: mouseY, duration: 0.05, ease: "power2.out" });
+            gsap.to(robloxCursor, { x: mouseX, y: mouseY, duration: 0.1, ease: "power2.out" });
         });
 
-        function createRobloxParticle(x, y) {
-            if (!cursorParticlesContainer) return;
-            const p = document.createElement('div');
-            p.classList.add('roblox-particle');
-            cursorParticlesContainer.appendChild(p);
-            gsap.set(p, { x: x, y: y, scale: Math.random() * 0.4 + 0.6, rotation: Math.random() * 360 });
-            gsap.to(p, {
-                y: y + 80 + Math.random() * 40,
-                x: x + (Math.random() - 0.5) * 50,
-                opacity: 0,
-                scale: 0,
-                duration: 0.6 + Math.random() * 0.4,
-                onComplete: () => p.remove()
-            });
-        }
-        
         const interactiveElements = document.querySelectorAll('a, button, .magnetic-item, input, textarea, .game-card, .media-slide, .grid-block');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
@@ -148,39 +125,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 const rect = wrap.getBoundingClientRect();
                 const centerX = rect.left + rect.width / 2;
                 const centerY = rect.top + rect.height / 2;
-                const moveX = (e.clientX - centerX) / 4;
-                const moveY = (e.clientY - centerY) / 4;
-                gsap.to(item, { x: moveX, y: moveY, duration: 0.4, ease: "power2.out" });
+                const moveX = (e.clientX - centerX) / 6;
+                const moveY = (e.clientY - centerY) / 6;
+                gsap.to(item, { x: moveX, y: moveY, duration: 0.3, ease: "power1.out" });
             });
             wrap.addEventListener('mouseleave', () => {
-                gsap.to(item, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.4)" });
+                gsap.to(item, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" });
             });
         });
 
         document.querySelectorAll('.tilt-element, .bounce-card, .tilt-card').forEach(el => {
-            const glare = el.querySelector('.card-glare');
             el.addEventListener('mousemove', (e) => {
                 const rect = el.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                el.style.setProperty('--mouse-x', `${x}px`);
-                el.style.setProperty('--mouse-y', `${y}px`);
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -6;
-                const rotateY = ((x - centerX) / centerX) * 6;
-                el.style.transform = `perspective(2000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-                if (glare) {
-                    const glareX = (x / rect.width) * 100;
-                    const glareY = (y / rect.height) * 100;
-                    glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.15), transparent 50%)`;
-                }
+                const rotateX = ((y - centerY) / centerY) * -4;
+                const rotateY = ((x - centerX) / centerX) * 4;
+                el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(5px)`;
             });
             el.addEventListener('mouseleave', () => {
-                el.style.transform = `perspective(2000px) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
-                if (glare) {
-                    glare.style.background = `radial-gradient(circle at 50% 50%, rgba(255,255,255,0), transparent 60%)`;
-                }
+                el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
             });
         });
     }
@@ -203,45 +169,25 @@ document.addEventListener("DOMContentLoaded", () => {
         gsap.utils.toArray('.reveal, .reveal-up').forEach(elem => {
             ScrollTrigger.create({
                 trigger: elem,
-                start: "top 85%",
+                start: "top 90%",
                 onEnter: () => elem.classList.add('active')
             });
-        });
-        gsap.utils.toArray('.pop-in').forEach((elem) => {
-            gsap.fromTo(elem, 
-                { scale: 0.8, opacity: 0, y: 30 }, 
-                { 
-                    scrollTrigger: { trigger: elem, start: "top 90%" }, 
-                    scale: 1, opacity: 1, y: 0, duration: 1.2, 
-                    ease: "elastic.out(1, 0.6)", stagger: 0.1 
-                }
-            );
         });
 
         const gridBlocks = document.querySelectorAll('.grid-block');
         if (gridBlocks.length > 0) {
             gsap.fromTo(gridBlocks,
-                { scale: 0, opacity: 0, rotationZ: 15 },
+                { scale: 0, opacity: 0 },
                 {
                     scrollTrigger: {
                         trigger: '#interactive-grid',
                         start: "top 85%"
                     },
-                    scale: 1, opacity: 1, rotationZ: 0,
-                    duration: 0.6,
-                    ease: "back.out(1.5)",
-                    stagger: 0.03
+                    scale: 1, opacity: 1,
+                    duration: 0.4,
+                    stagger: 0.02
                 }
             );
-
-            gridBlocks.forEach(block => {
-                block.addEventListener('click', () => {
-                    gsap.fromTo(block, 
-                        { scale: 0.7 }, 
-                        { scale: 1, duration: 0.5, ease: "elastic.out(1, 0.4)" }
-                    );
-                });
-            });
         }
     }
 
@@ -254,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
                 let frame = 0;
-                const totalFrames = 90;
+                const totalFrames = 60;
                 const updateCounter = () => {
                     frame++;
                     const progress = 1 - Math.pow(1 - (frame / totalFrames), 3);
@@ -287,14 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const scrollMedia = 480; 
         prevMedia.addEventListener('click', () => mediaTrack.scrollBy({ left: -scrollMedia, behavior: 'smooth' }));
         nextMedia.addEventListener('click', () => mediaTrack.scrollBy({ left: scrollMedia, behavior: 'smooth' }));
-        if(window.matchMedia("(pointer: fine)").matches) {
-            mediaTrack.addEventListener('wheel', (e) => {
-                if (e.deltaY !== 0) {
-                    e.preventDefault();
-                    mediaTrack.scrollLeft += e.deltaY * 1.5;
-                }
-            }, { passive: false });
-        }
     }
 });
 
@@ -315,14 +253,11 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let baseUrl of proxyList) {
             try {
                 let url = isThumb ? baseUrl + ids + '&size=768x432&format=Png&isCircular=false' : baseUrl + ids;
-                
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 6000);
                 const response = await fetch(url, { signal: controller.signal });
                 clearTimeout(timeoutId);
-                
                 if (!response.ok) continue;
-
                 let data = await response.json();
                 if (data && data.data) return data.data;
             } catch (e) { continue; }
@@ -368,10 +303,8 @@ document.addEventListener("DOMContentLoaded", () => {
             allCards.forEach(card => {
                 const uidStr = (card.dataset.universeId || "").trim();
                 const uid = parseInt(uidStr);
-                
                 const isForcedDev = card.dataset.status === 'dev' || card.dataset.status === 'partner' || uidStr === '' || uidStr === '0000000';
                 const isPartner = card.dataset.status === 'partner';
-
                 const nameEl = card.querySelector('.game-name');
                 const peakEl = card.querySelector('.peak-count');
                 const visitEl = card.querySelector('.visit-count');
