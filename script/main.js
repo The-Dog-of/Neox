@@ -303,7 +303,8 @@ document.addEventListener("DOMContentLoaded", () => {
             allCards.forEach(card => {
                 const uidStr = (card.dataset.universeId || "").trim();
                 const uid = parseInt(uidStr);
-                const isForcedDev = card.dataset.status === 'dev' || card.dataset.status === 'partner' || uidStr === '' || uidStr === '0000000';
+                const isLive = card.dataset.status === 'live';
+                const isForcedDev = !isLive && (card.dataset.status === 'dev' || card.dataset.status === 'partner' || uidStr === '' || uidStr === '0000000');
                 const isPartner = card.dataset.status === 'partner';
                 const nameEl = card.querySelector('.game-name');
                 const peakEl = card.querySelector('.peak-count');
@@ -338,12 +339,14 @@ document.addEventListener("DOMContentLoaded", () => {
                             let v = game.visits || 0;
                             visitEl.innerText = v >= 1e6 ? (v / 1e6).toFixed(1) + 'M+' : v >= 1e3 ? (v / 1e3).toFixed(1) + 'K+' : v.toLocaleString();
                         }
-                    } else {
+                    } else if (!isLive) {
                         setDevMode();
                     }
                 } else {
                     if (nameEl && nameEl.innerText.includes('Carregando')) nameEl.innerText = 'API Offline';
-                    setDevMode();
+                    if (!isLive) {
+                        setDevMode();
+                    }
                 }
 
                 if (thumbData && !isNaN(uid)) {
